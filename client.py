@@ -1,7 +1,7 @@
 import socket
 
 
-IP = socket.gethostname()
+IP = socket.gethostname() #Test IP
 PORT = 5000
 
 
