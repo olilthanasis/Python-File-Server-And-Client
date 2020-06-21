@@ -3,7 +3,7 @@ import os
 import time
 
 
-IP = socket.gethostname()
+IP = socket.gethostname() #Test IP
 PORT = 5000
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
