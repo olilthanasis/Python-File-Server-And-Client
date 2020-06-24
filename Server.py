@@ -31,7 +31,6 @@ while True:
         connected_socket.send(data)
         file_head = connected_socket.recv(2**32).decode("utf-8")
         file_data = connected_socket.recv(2**32)
-        print(file_head,file_data)
         with open(file_head, "wb") as f:
             f.write(bytes(file_data))
             f.close()
