@@ -53,5 +53,5 @@ elif getorpush.lower() == "upload":
     s.send(file_data)
     s.close()
 else:
-    print(f"ERROR :{getorpush}<---- illegal command \nTry using either 'upload' or 'download'")
     s.close()
+    print(f"ERROR :{getorpush}<---- illegal command \nTry using either 'upload' or 'download'")
