@@ -38,12 +38,10 @@ if getorpush.lower() == "download":
 elif getorpush.lower() == "upload":
     s.send(bytes('UPLOAD',"utf-8"))
     list_of_files = pickle.loads(s.recv(2**32))
-    print("check1")
     print(list_of_files)
     root = tk.Tk()
     root.lift()
     file_path = filedialog.askopenfilename()
-    print("check2")
     name = input("File Name: ")
     if name in list_of_files:
         print(f"{name} already exists. Try another name.")
