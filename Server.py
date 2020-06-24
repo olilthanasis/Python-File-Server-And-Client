@@ -7,12 +7,13 @@ import threading
 IP = socket.gethostname()
 PORT = 5000
 
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((IP, PORT))
 s.listen(5)
 
 
-def server(client):
+def connection(client):
     client.send(bytes("Connected successfully; please enter the name of the desired file","utf-8"))
     if client.recv(1024).decode("utf-8") == "DOWNLOAD":
         list_of_files = os.listdir(r"C:\Users\mitth\PycharmProjects\sockets")
@@ -26,17 +27,19 @@ def server(client):
                 client.send(file_bytes)
         else:
             client.send(bytes("False", "utf-8"))
-    else:
+    elif client.recv(1024).decode("utf-8") == "UPLOAD":
         list_of_files = os.listdir(r"C:\Users\mitth\PycharmProjects\sockets")
         data = pickle.dumps(list_of_files)
         client.send(data)
-        file_head = client.recv(2**32).decode("utf-8")
-        file_data = client.recv(2**32)
+        file_head = client.recv(2 ** 32).decode("utf-8")
+        file_data = client.recv(2 ** 32)
         with open(file_head, "wb") as f:
             f.write(bytes(file_data))
             f.close()
+    else:
+        pass
 
 
 while True:
     connected_socket = s.accept()[0]
-    threading.Thread(target=server, args=(connected_socket, )).start()
+    threading.Thread(target=connection, args=(connected_socket,)).start()
