@@ -51,5 +51,7 @@ elif getorpush.lower() == "upload":
         file_data = file.read()
     s.send(bytes(name,'utf-8'))
     s.send(file_data)
+    s.close()
 else:
     print(f"ERROR :{getorpush}<---- illegal command \nTry using either 'upload' or 'download'")
+    s.close()
