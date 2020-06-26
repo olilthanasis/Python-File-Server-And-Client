@@ -15,7 +15,8 @@ s.listen(5)
 
 def connection(client):
     client.send(bytes("Connected successfully; please enter the name of the desired file","utf-8"))
-    if client.recv(1024).decode("utf-8") == "DOWNLOAD":
+    k = client.recv(1024).decode("utf-8")
+    if k == "DOWNLOAD":
         list_of_files = os.listdir(r"C:\Users\mitth\PycharmProjects\sockets")
         data = pickle.dumps(list_of_files)
         client.send(data)
@@ -27,7 +28,7 @@ def connection(client):
                 client.send(file_bytes)
         else:
             client.send(bytes("False", "utf-8"))
-    elif client.recv(1024).decode("utf-8") == "UPLOAD":
+    elif k == "UPLOAD":
         list_of_files = os.listdir(r"C:\Users\mitth\PycharmProjects\sockets")
         data = pickle.dumps(list_of_files)
         client.send(data)
@@ -43,3 +44,4 @@ def connection(client):
 while True:
     connected_socket = s.accept()[0]
     threading.Thread(target=connection, args=(connected_socket,)).start()
+
