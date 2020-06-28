@@ -38,7 +38,6 @@ if getorpush.lower() == "download":
 elif getorpush.lower() == "upload":
     s.send(bytes('UPLOAD',"utf-8"))
     list_of_files = pickle.loads(s.recv(2**32))
-    print(list_of_files)
     root = tk.Tk()
     root.lift()
     file_path = filedialog.askopenfilename()
