@@ -15,7 +15,7 @@ s.listen(5)
 
 def connection(client):
     try:
-        client.send(bytes("Connected successfully; please enter the name of the desired file","utf-8"))
+        client.send(bytes("Connected successfully. Please enter the name of the desired file","utf-8"))
         k = client.recv(1024).decode("utf-8")
         if k == "DOWNLOAD":
             list_of_files = os.listdir(r"C:\Users\mitth\PycharmProjects\sockets")
